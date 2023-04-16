@@ -31,8 +31,8 @@ class Model(BaseAgent):
         self.priority_alpha = config.PRIORITY_ALPHA
 
         self.static_policy = static_policy
-        self.num_feats = env.observation_space.shape
-        self.num_actions = env.action_space.n
+        self.num_feats = (6, )
+        self.num_actions = 2
         self.env = env
 
         self.declare_networks()
@@ -59,8 +59,8 @@ class Model(BaseAgent):
         self.nstep_buffer = []
 
     def declare_networks(self):
-        self.model = DQN(self.num_feats, self.num_actions, noisy=self.noisy, sigma_init=self.sigma_init, body=AtariBody)
-        self.target_model = DQN(self.num_feats, self.num_actions, noisy=self.noisy, sigma_init=self.sigma_init, body=AtariBody)
+        self.model = DQN(self.num_feats, self.num_actions, noisy=self.noisy, sigma_init=self.sigma_init, body=SimpleBody)
+        self.target_model = DQN(self.num_feats, self.num_actions, noisy=self.noisy, sigma_init=self.sigma_init, body=SimpleBody)
 
     def declare_memory(self):
         self.memory = ExperienceReplayMemory(self.experience_replay_size) if not self.priority_replay else PrioritizedReplayMemory(self.experience_replay_size, self.priority_alpha, self.priority_beta_start, self.priority_beta_frames)

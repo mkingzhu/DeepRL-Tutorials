@@ -18,8 +18,8 @@ class Model(DQN_Agent):
         super(Model, self).__init__(static_policy, env, config, log_dir=log_dir)
 
     def declare_networks(self):
-        self.model = CategoricalDQN(self.env.observation_space.shape, self.env.action_space.n, noisy=self.noisy, sigma_init=self.sigma_init, atoms=self.atoms)
-        self.target_model = CategoricalDQN(self.env.observation_space.shape, self.env.action_space.n, noisy=self.noisy, sigma_init=self.sigma_init, atoms=self.atoms)
+        self.model = CategoricalDQN((6, ), 2, noisy=self.noisy, sigma_init=self.sigma_init, atoms=self.atoms)
+        self.target_model = CategoricalDQN((6, ), 2, noisy=self.noisy, sigma_init=self.sigma_init, atoms=self.atoms)
 
     def projection_distribution(self, batch_vars):
         batch_state, batch_action, batch_reward, non_final_next_states, non_final_mask, empty_next_state_values, indices, weights = batch_vars

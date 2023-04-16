@@ -29,6 +29,7 @@ config.BATCH_SIZE      = 32
 #Learning control variables
 config.LEARN_START = 40
 config.UPDATE_FREQ = 1
+config.TARGET_NET_UPDATE_FREQ = 1
 
 # Model - DQN
 model = Model(env=None, config=config)
